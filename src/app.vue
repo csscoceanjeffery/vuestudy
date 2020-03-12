@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <h2>欢迎使用项目模板！</h2>
+        <img src="./assets/logo.png">
+        <router-view/>
     </div>
 </template>
 
@@ -10,6 +11,12 @@
     }
 </script>
 
-<style scoped>
-    h2 {color: red}
+<style lang="scss">
+    $black: black;
+    $yellow: yellow;
+    h2 {
+        color: $black;
+        background: $yellow;
+        transform: rotate(20deg);
+    }
 </style>

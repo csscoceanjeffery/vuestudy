@@ -10,6 +10,12 @@
     }
 </script>
 
-<style scoped>
-    h2 {color: red}
+<style lang="scss">
+    $black: black;
+    $red: red;
+    h2 {
+        background: $black;
+        color: $red;
+        transform: rotate(20deg);
+    }
 </style>

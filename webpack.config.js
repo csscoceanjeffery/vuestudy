@@ -19,6 +19,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [require("postcss-preset-env")()]
+                        }
+                    },
+                    "sass-loader"
+                ]
             }
         ]
     },

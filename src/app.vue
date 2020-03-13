@@ -1,10 +1,12 @@
 <template>
     <div id="app">
-        <h2>欢迎使用项目模板！</h2>
+        <img src="./assets/logo.png">
+        <router-view/>
     </div>
 </template>
 
 <script>
+    console.log("fase");
     export default {
         name: "App"
     }
@@ -12,10 +14,12 @@
 
 <style lang="scss">
     $black: black;
-    $red: red;
+    $yellow: yellow;
     h2 {
-        background: $black;
-        color: $red;
-        transform: rotate(20deg);
+        font-size: 60px;
+
+        color: $black;
+        background: $yellow;
+        /*transform: rotate(20deg);*/
     }
 </style>

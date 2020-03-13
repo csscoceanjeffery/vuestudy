@@ -10,6 +10,10 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        hot: true
+    },
     module: {
         rules: [
             {
@@ -28,15 +32,60 @@ module.exports = {
                     {
                         loader: "postcss-loader",
                         options: {
-                            plugins: [require("postcss-preset-env")()]
+                            plugins:[
+                                require("postcss-preset-env")()
+                            ]
                         }
                     },
                     "sass-loader"
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            limit: 8092,
+                            name: "img/[hash:7].[ext]",
+                            esModule: false
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            limit: 8092,
+                            name: "media/[hash:7].[ext]"
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            limit: 8092,
+                            name: "font/[hash:7].[ext]"
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
             }
         ]
     },
     stats: { children: false },
+    devtool: 'eval-source-map',
     plugins: [
         new VueLoadPlugin(),
         new HtmlWebpackPlugin({
